@@ -1,0 +1,6 @@
+framework module Pods_ios_swift_clean_architecture {
+  umbrella header "Pods-ios_swift_clean_architecture-umbrella.h"
+
+  export *
+  module * { export * }
+}
