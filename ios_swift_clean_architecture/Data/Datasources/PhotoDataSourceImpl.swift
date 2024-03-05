@@ -11,7 +11,7 @@ enum PhotoDataSourceImpl: RestApi {
     var path: String {
         switch self {
         case .getPhotoDataSource(let pageSize):
-            return "?key=\(Config.current.apiKey)&page=\(pageSize)&per_page=30"
+            return "?key=\(Config.current.apiKey)&page=\(pageSize)&per_page=200"
         }
     }
 

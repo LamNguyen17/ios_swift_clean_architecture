@@ -15,11 +15,11 @@ struct PhotoResult: Decodable {
 }
 
 struct PhotoRepository: PhotoUseCase {
+    
     func getPhoto(pageSize: Int, completion: @escaping (Result<PhotoResult, Error>) -> Void) {
         return PhotoDataSourceImpl
             .getPhotoDataSource(pageSize: pageSize)
             .request(returnType: PhotoResult.self){ result in
-                print("response: \(result)")
                 switch result {
                 case .success(let photoResult):
                     completion(.success(photoResult));

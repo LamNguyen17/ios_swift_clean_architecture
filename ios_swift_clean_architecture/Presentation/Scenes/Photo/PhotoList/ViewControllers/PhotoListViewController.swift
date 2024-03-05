@@ -13,25 +13,20 @@ class PhotoListViewController: UIViewController {
     var apiResult = PhotoResult()
     
     @IBOutlet weak var tableViewPhoto: UITableView!
+    var viewModel = PhotoViewModel()
     @Injected var photoUseCase: PhotoUseCase
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Photo", comment: "")
-        photoUseCase.getPhoto(pageSize: 1){ result in
+        viewModel.getPhotoVM(pageSize: 1) { result in
             switch result {
-            case .success(let photoResult):
-                print("response_success: \(photoResult)")
-                self.apiResult = photoResult
-                DispatchQueue.main.async {
-                    self.tableViewPhoto.reloadData()
-                }
-                break
+            case .success:
+                self.tableViewPhoto.reloadData()
             case .failure(let error):
-                print("response_failure: \(error)")
-                break
+                print("Failed to fetch users: \(error)")
             }
-        };
+        }
         configUI()
     }
     
@@ -45,7 +40,7 @@ class PhotoListViewController: UIViewController {
 
 extension PhotoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return apiResult.hits?.count ?? 0
+        return viewModel.photoResult?.hits?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +48,7 @@ extension PhotoListViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             return UITableViewCell()
         }
-        cell.textLabel?.text = apiResult.hits?[indexPath.row].user
+        cell.textLabel?.text = viewModel.photoResult?.hits?[indexPath.row].user
         return cell
     }
 }
