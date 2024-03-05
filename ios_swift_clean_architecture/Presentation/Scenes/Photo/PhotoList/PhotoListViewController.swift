@@ -45,27 +45,22 @@ extension PhotoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableViewPhoto.dequeueReusableCell(withIdentifier: "PhotoCell") as? PhotoCell
-//        else {
-//            return UITableViewCell()
-//        }
-//        cell.textLabel?.text = viewModel.photoResult?.hits?[indexPath.row].user
-//        return cell
-        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell") as? PhotoCell {
             if let url = URL(string: viewModel.photoResult?.hits?[indexPath.row].previewURL ?? "") {
                 cell.imageViewThumbnail.kf.setImage(with: url)
             }
             cell.labelUser.text = viewModel.photoResult?.hits?[indexPath.row].user
             
-            cell.labelTags.text = "Thẻ: \(viewModel.photoResult?.hits?[indexPath.row].tags ?? "")"
-            // viewModel.photoResult?.hits?[indexPath.row].likes
-            
-            let str = viewModel.photoResult?.hits?[indexPath.row].likes != nil ? "\(viewModel.photoResult?.hits?[indexPath.row].likes!)" : ""
-            cell.labelLikes.text = "Lượt thích: \(str)"
-//            cell.labelComments.numberOfLines = 1
-//            cell.labelComments.lineBreakMode = .byWordWrapping
-//            cell.labelComments.text = "Bình luận: \(viewModel.photoResult?.hits?[indexPath.row].comments ?? "")"
+//            cell.labelTags.text = "Thẻ: \(viewModel.photoResult?.hits?[indexPath.row].tags)
+            if let tags = viewModel.photoResult?.hits?[indexPath.row].tags {
+                cell.labelTags.text = "Lượt thích: \(tags)"
+            }
+            if let likes = viewModel.photoResult?.hits?[indexPath.row].likes {
+                cell.labelLikes.text = "Lượt thích: \(likes)"
+            }
+            if let comments = viewModel.photoResult?.hits?[indexPath.row].comments {
+                cell.labelComments.text = "Bình luận: \(comments)"
+            }
             return cell
         }
         return UITableViewCell()

@@ -25,8 +25,8 @@ struct Hits: Decodable {
     var views: Int?
     var downloads: Int?
     var collections: Int?
-    var likes: Int?
-    var comments: Int?
+    var likes: Int
+    var comments: Int
     var userId: Int?
     var user: String?
     var userImageURL: String?

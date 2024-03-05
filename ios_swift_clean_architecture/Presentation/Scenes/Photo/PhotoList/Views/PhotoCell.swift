@@ -20,7 +20,7 @@ class PhotoCell: UITableViewCell {
         labelUser.numberOfLines = 1
         labelUser.lineBreakMode = .byWordWrapping
         labelTags.numberOfLines = 1
-        labelTags.lineBreakMode = .byWordWrapping
+        labelTags.lineBreakMode = .byTruncatingTail
         labelLikes.numberOfLines = 1
         labelLikes.lineBreakMode = .byWordWrapping
         labelComments.numberOfLines = 1
