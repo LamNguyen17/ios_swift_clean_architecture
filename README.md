@@ -38,3 +38,6 @@ There are 3 main modules to help separate the code. They are Data, Domain, and P
 - **Domain** contains UseCases, Domain Objects/Models, and Repository Interfaces
 
 - **Presentaion** contains UI, ViewModel, ViewController etc. Can be split into separate modules itself if needed. For example, we could have a module called Device handling things like camera, location, etc.
+
+# 🚀 UI example
+![alt text](https://github.com/LamNguyen17/ios_swift_clean_architecture/blob/main/Images/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202024-03-05%20at%2015.39.28.png)
